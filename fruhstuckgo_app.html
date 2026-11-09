@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FrühstückGo – Frühstück nach Hause</title>
+<style>
+:root{--ink:#26332d;--muted:#66736c;--cream:#fffaf1;--green:#315c45;--mint:#e8f1e8;--orange:#f2a65a;--line:#e9e4d9}
+*{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);font-family:Arial,Helvetica,sans-serif}
+header{background:var(--green);color:white;padding:22px max(20px,calc((100% - 1050px)/2));}
+.brand{font-size:27px;font-weight:800;letter-spacing:-.7px}.tag{opacity:.9;margin-top:5px;font-size:14px}
+main{max-width:1050px;margin:28px auto;padding:0 18px}
+.hero{background:linear-gradient(120deg,#e9f1e5,#fff0d9);border-radius:22px;padding:30px;margin-bottom:24px}
+.hero h1{font-size:clamp(28px,5vw,42px);margin:0 0 10px}.hero p{max-width:650px;line-height:1.5;color:#4f6055;margin:0}
+.pills{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}.pill{background:white;border:1px solid #dce5d8;border-radius:999px;padding:8px 12px;font-size:13px}
+.layout{display:grid;grid-template-columns:1.5fr 1fr;gap:22px;align-items:start}
+h2{font-size:21px;margin:0 0 14px}.section{background:white;border:1px solid var(--line);border-radius:18px;padding:20px;margin-bottom:18px}
+.products{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.product{border:1px solid var(--line);border-radius:15px;padding:15px;display:flex;flex-direction:column;min-height:180px}
+.emoji{font-size:30px}.product h3{font-size:16px;margin:8px 0 5px}.product p{font-size:13px;color:var(--muted);line-height:1.4;margin:0 0 12px;flex:1}
+.price{font-weight:800;margin-bottom:10px}.btn{border:0;border-radius:10px;background:var(--green);color:white;padding:11px 14px;font-weight:700;cursor:pointer}.btn:hover{filter:brightness(1.08)}.btn.secondary{background:var(--mint);color:var(--green);border:1px solid #d7e5d7}
+label{display:block;font-size:13px;font-weight:700;margin:12px 0 6px}input,select{width:100%;padding:11px;border:1px solid #d8ddd7;border-radius:10px;font:inherit;background:white;color:var(--ink)}
+.options{display:flex;flex-wrap:wrap;gap:8px}.option{border:1px solid #d8ddd7;border-radius:999px;padding:9px 12px;font-size:13px;cursor:pointer;background:white}.option input{width:auto;margin:0 5px 0 0}.hint{font-size:12px;color:var(--muted);line-height:1.45;margin-top:8px}
+.cartline,.total{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);font-size:14px}.total{font-size:16px;font-weight:800;border:0;padding-top:14px}
+.notice{background:#fff5df;border:1px solid #f3dfb8;padding:11px;border-radius:11px;font-size:13px;line-height:1.4;margin-top:12px}
+.success{display:none;background:#e8f4e8;color:#245337;padding:12px;border-radius:11px;margin-top:12px;font-size:14px}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:25px}
+@media(max-width:760px){.layout{grid-template-columns:1fr}.products{grid-template-columns:1fr 1fr}}
+@media(max-width:430px){.products{grid-template-columns:1fr}.hero{padding:23px}}
+</style>
+</head>
+<body>
+<header><div class="brand">🥐 FrühstückGo</div><div class="tag">Frisch, lecker und direkt zu dir nach Hause.</div></header>
+<main>
+<section class="hero">
+<h1>Dein Frühstück. Dein Morgen.</h1>
+<p>Bestelle frische Frühstücksboxen, wähle deine Proteinquelle und lass dir alles bequem nach Hause liefern.</p>
+<div class="pills"><span class="pill">🏠 Lieferung nach Hause</span><span class="pill">🚴 30–45 Minuten</span><span class="pill">🎁 Gratis ab 20 €</span><span class="pill">📅 Jeden Tag planbar</span></div>
+</section>
+<div class="layout">
+<div>
+<section class="section">
+<h2>Unsere Frühstücksangebote</h2>
+<div class="products">
+<article class="product"><div class="emoji">🥐</div><h3>Klassische Frühstücksbox</h3><p>Brötchen, Croissant, Butter, Marmelade und frisches Obst.</p><div class="price">7,99 €</div><button class="btn" onclick="add('Klassische Frühstücksbox',7.99)">In den Warenkorb</button></article>
+<article class="product"><div class="emoji">💪</div><h3>Protein-Frühstück</h3><p>Ein ausgewogenes Frühstück mit deiner gewählten Proteinquelle.</p><div class="price">9,49 €</div><button class="btn" onclick="add('Protein-Frühstück',9.49)">In den Warenkorb</button></article>
+<article class="product"><div class="emoji">🥪</div><h3>Sandwich</h3><p>Frisch zubereitet – ideal für einen schnellen Start in den Tag.</p><div class="price">3,50 €</div><button class="btn" onclick="add('Sandwich',3.50)">In den Warenkorb</button></article>
+<article class="product"><div class="emoji">☕</div><h3>Kaffee</h3><p>Frisch gebrühter Kaffee für deinen Morgen.</p><div class="price">2,00 €</div><button class="btn" onclick="add('Kaffee',2.00)">In den Warenkorb</button></article>
+</div>
+</section>
+<section class="section">
+<h2>💪 Wähle deine Proteinquelle</h2>
+<p class="hint">Du kannst deine Lieblings-Proteinquelle selbst auswählen:</p>
+<div class="options">
+<label class="option"><input type="radio" name="protein" value="Eier" checked>Eier</label>
+<label class="option"><input type="radio" name="protein" value="Griechischer Joghurt">Griechischer Joghurt</label>
+<label class="option"><input type="radio" name="protein" value="Quark">Quark</label>
+<label class="option"><input type="radio" name="protein" value="Protein-Sandwich">Protein-Sandwich</label>
+</div>
+</section>
+<section class="section">
+<h2>📅 Lieferung planen</h2>
+<label for="delivery">Lieferung</label>
+<select id="delivery"><option value="asap">So schnell wie möglich (30–45 Min.)</option><option value="daily">Jeden Tag – regelmäßige Bestellung</option><option value="once">Ein bestimmter Tag</option></select>
+<div id="dateWrap" style="display:none"><label for="date">Wähle deinen Liefertag</label><input type="date" id="date"></div>
+<div id="dailyWrap" style="display:none"><label for="days">An welchen Tagen?</label><input id="days" placeholder="z. B. Montag bis Freitag"><div class="hint">Bitte gib deine tägliche Bestellung spätestens bis 10:00 Uhr auf.</div></div>
+<div class="notice">⏰ Für eine regelmäßige tägliche Lieferung kannst du deine gewünschten Tage auswählen. Die Bestellung muss bis spätestens 10:00 Uhr erfolgen.</div>
+</section>
+</div>
+<aside>
+<section class="section">
+<h2>🛒 Dein Warenkorb</h2>
+<div id="cart"><p class="hint">Dein Warenkorb ist noch leer.</p></div>
+<div class="cartline"><span>Lieferkosten</span><span id="deliveryFee">1,99 €</span></div>
+<div class="total"><span>Gesamt</span><span id="grand">0,00 €</span></div>
+<p class="hint" id="freeHint">Kostenlose Lieferung ab 20 €.</p>
+</section>
+<section class="section">
+<h2>📍 Lieferadresse</h2>
+<label for="name">Name</label><input id="name" placeholder="Dein Name">
+<label for="address">Straße und Hausnummer</label><input id="address" placeholder="Musterstraße 12">
+<label for="postcode">PLZ und Stadt</label><input id="postcode" placeholder="z. B. 50667 Köln">
+<label for="payment">Zahlungsmethode</label><select id="payment"><option>Karte</option><option>PayPal</option><option>Barzahlung bei Lieferung</option></select>
+<button class="btn" style="width:100%;margin-top:16px" onclick="checkout()">Bestellung vorbereiten</button>
+<div class="success" id="success"></div>
+<p class="hint">Demo-App: Diese Seite nimmt keine echte Zahlung entgegen und sendet keine Bestellung an einen Lieferdienst.</p>
+</section>
+</aside>
+</div>
+</main>
+<footer>FrühstückGo · Dein Frühstück direkt nach Hause 🥐</footer>
+<script>
+const cart=[];
+const money=n=>n.toLocaleString('de-DE',{style:'currency',currency:'EUR'});
+function add(name,price){const item=cart.find(x=>x.name===name);if(item)item.qty++;else cart.push({name,price,qty:1});render();}
+function render(){
+ const el=document.getElementById('cart');el.innerHTML='';
+ if(!cart.length)el.innerHTML='<p class="hint">Dein Warenkorb ist noch leer.</p>';
+ cart.forEach((x,i)=>{const row=document.createElement('div');row.className='cartline';row.innerHTML=`<span>${x.name} × ${x.qty}<br><button class="btn secondary" style="padding:4px 8px;margin-top:5px" onclick="removeItem(${i})">Entfernen</button></span><strong>${money(x.price*x.qty)}</strong>`;el.appendChild(row);});
+ const subtotal=cart.reduce((s,x)=>s+x.price*x.qty,0),fee=subtotal===0||subtotal>=20?0:1.99;
+ document.getElementById('deliveryFee').textContent=fee===0?(subtotal>=20?'Gratis':'0,00 €'):money(fee);
+ document.getElementById('grand').textContent=money(subtotal+fee);
+ document.getElementById('freeHint').textContent=subtotal>=20?'Super! Deine Lieferung ist kostenlos.':'Noch '+money(Math.max(0,20-subtotal))+' bis zur kostenlosen Lieferung.';
+}
+function removeItem(i){cart.splice(i,1);render();}
+document.getElementById('delivery').addEventListener('change',e=>{
+ document.getElementById('dailyWrap').style.display=e.target.value==='daily'?'block':'none';
+ document.getElementById('dateWrap').style.display=e.target.value==='once'?'block':'none';
+});
+function checkout(){
+ const name=document.getElementById('name').value.trim(),address=document.getElementById('address').value.trim(),postcode=document.getElementById('postcode').value.trim();
+ if(!cart.length){alert('Bitte füge zuerst ein Produkt zum Warenkorb hinzu.');return;}
+ if(!name||!address||!postcode){alert('Bitte fülle Name und Lieferadresse aus.');return;}
+ const protein=document.querySelector('input[name="protein"]:checked').value;
+ const delivery=document.getElementById('delivery').value;
+ let plan=delivery==='daily'?'Tägliche Lieferung: '+(document.getElementById('days').value||'Tage noch auswählen')+' (Bestellung bis 10:00 Uhr)':delivery==='once'?'Lieferdatum: '+(document.getElementById('date').value||'noch auswählen'):'So schnell wie möglich';
+ const box=document.getElementById('success');box.style.display='block';
+ box.textContent='Bestellung vorbereitet für '+name+'. Protein-Auswahl: '+protein+'. '+plan+'. Dies ist nur eine Demo – es wurde keine echte Bestellung versendet.';
+}
+render();
+</script>
+</body>
+</html>
